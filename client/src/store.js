@@ -5,7 +5,7 @@ import { routerMiddleware } from "connected-react-router";
 
 import createRootReducer from "./redux/reducers/index";
 import rootSaga from "./redux/sagas";
-import { apply } from "redux-saga/effects";
+//import { apply } from "redux-saga/effects";
 
 export const history = createBrowserHistory();
 
