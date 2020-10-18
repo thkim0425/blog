@@ -101,7 +101,7 @@ const AppNavbar = () => {
           <Link to="/" className="text-white text-decoration-none">
             홈
           </Link>
-          <NavbarToggler></NavbarToggler>
+          <NavbarToggler onClick={handleToggle}></NavbarToggler>
           <Collapse isOpen={isOpen} navbar>
             <Nav className="ml-auto d-flex justify-content-around" navbar>
               {isAuthenticated ? authLink : guestLink}
