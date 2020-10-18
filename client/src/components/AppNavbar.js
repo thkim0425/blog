@@ -11,7 +11,7 @@ import {
 } from "reactstrap";
 import { Link } from "react-router-dom";
 import LoginModal from "./auth/LoginModal";
-import { LOGOUT_REQUEST } from "../redux/types";
+import { LOGOUT_REQUEST, POSTS_WRITE_REQUEST } from "../redux/types";
 import { useSelector, useDispatch } from "react-redux";
 import RegisterModal from "./auth/RegisterModal";
 
@@ -38,7 +38,12 @@ const AppNavbar = () => {
     setIsOpen(!isOpen);
   };
 
-  const addPostClick = () => {};
+  const addPostClick = () => {
+    dispatch({
+      type: POSTS_WRITE_REQUEST,
+    });
+  };
+
   const authLink = (
     <Fragment>
       <NavItem>
