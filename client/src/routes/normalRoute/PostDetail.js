@@ -1,4 +1,5 @@
 import React, { Fragment, useEffect } from "react";
+
 import { useDispatch, useSelector } from "react-redux";
 import { Helmet } from "react-helmet";
 import {
@@ -16,18 +17,20 @@ import {
   faCommentDots,
   faMouse,
 } from "@fortawesome/free-solid-svg-icons";
-import BallonEditor from "@ckeditor/ckeditor5-editor-balloon/src/ballooneditor";
+import BalloonEditor from "@ckeditor/ckeditor5-editor-balloon/src/ballooneditor";
 import { editorConfiguration } from "../../components/editor/EditorConfig";
 
 const PostDetail = (req) => {
-  console.log("post detail....");
+  console.log(req, "post detail.........");
   const dispatch = useDispatch();
+
+  const { userId } = useSelector((state) => state.auth);
+
   const { postDetail, creatorId, title, loading } = useSelector(
     (state) => state.post
   );
-  const { userId, userName } = useSelector((state) => state.auth);
 
-  //console.log(req);
+  console.log(req, "PostDetail.js req");
   useEffect(() => {
     console.log("post detail loading request");
     dispatch({
@@ -35,12 +38,14 @@ const PostDetail = (req) => {
       payload: req.match.params.id,
     });
 
+    console.log(req.match.params.id);
+
     console.log("user loading request");
     dispatch({
       type: USER_LOADING_REQUEST,
       payload: localStorage.getItem("token"),
     });
-  }, []);
+  }, [dispatch, req.match.params.id]);
 
   const onDeleteClick = () => {
     dispatch({
@@ -88,7 +93,13 @@ const PostDetail = (req) => {
       </Row>
     </Fragment>
   );
+  console.log(userId, "userId");
+  console.log(creatorId, "creatorId");
+  console.log(postDetail, "postDetail");
+  console.log(title, "title");
+  console.log(loading, "loading");
 
+  //{userId === creatorId ? EditButton : HomeButton}
   const Body = (
     <>
       {userId === creatorId ? EditButton : HomeButton}
@@ -111,7 +122,7 @@ const PostDetail = (req) => {
           }
         })()}
       </Row>
-      {postDetail && postDetail.comments ? (
+      {postDetail ? (
         <Fragment>
           <div className="d-flex justify-content-end align-items-baseline small">
             <FontAwesomeIcon icon={faPencilAlt}></FontAwesomeIcon>
@@ -127,7 +138,7 @@ const PostDetail = (req) => {
           </div>
           <Row className="mb-3">
             <CKEditor
-              editor={BallonEditor}
+              editor={BalloonEditor}
               data={postDetail.contents}
               config={editorConfiguration}
               disabled="true"
@@ -139,6 +150,9 @@ const PostDetail = (req) => {
       )}
     </>
   );
+
+  debugger;
+
   return (
     <div>
       <Helmet title={`Post | ${title}`} />

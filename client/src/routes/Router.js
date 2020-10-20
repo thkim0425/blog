@@ -13,8 +13,8 @@ import { Container } from "reactstrap";
 const MyRouter = () => {
   return (
     <React.Fragment>
-      <AppNavbar></AppNavbar>
-      <Header></Header>
+      <AppNavbar />
+      <Header />
       <Container id="main-body">
         <Switch>
           <Route path="/" exact component={PostCardList}></Route>
@@ -29,7 +29,7 @@ const MyRouter = () => {
           <Redirect from="*" to="/"></Redirect>
         </Switch>
       </Container>
-      <Footer></Footer>
+      <Footer />
     </React.Fragment>
   );
 };

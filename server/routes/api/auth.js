@@ -11,7 +11,7 @@ const router = express.Router();
 
 //@route POST api/auth
 //@desc  Auth user
-//@access Public
+//@access PublicS
 
 router.post("/", (req, res) => {
   const { email, password } = req.body;

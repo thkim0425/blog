@@ -64,12 +64,12 @@ const AppNavbar = () => {
       <NavItem className="d-flex justify-content-center">
         <Form className="col mt-2">
           {user && user.name ? (
-            <Link>
-              <Button outline color="light" className="px-3" block>
-                <strong>{user ? `Welcome ${user.name}` : ""}</strong>
-              </Button>
-            </Link>
+            //<Link>
+            <Button outline color="light" className="px-3" block>
+              <strong>{user ? `Welcome ${user.name}` : ""}</strong>
+            </Button>
           ) : (
+            //</Link>
             <Button outline color="light" className="px-3" block>
               <strong>No User</strong>
             </Button>

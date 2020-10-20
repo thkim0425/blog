@@ -424,7 +424,7 @@ module.exports = function (webpackEnv) {
               },
             },
 
-            //CKEditor5
+            //CKEditor5 settings
             {
               test: /ckeditor5-[^/\\]+[/\\]theme[/\\]icons[/\\][^/\\]+\.svg$/,
               use: ["raw-loader"],

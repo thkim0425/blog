@@ -9,6 +9,7 @@ export const GrowingSpinner = (
         type="grow"
         color="primary"
       />
+
       <Spinner
         style={{ width: "2rem", height: "2rem" }}
         type="grow"

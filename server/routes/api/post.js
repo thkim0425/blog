@@ -105,6 +105,7 @@ router.post("/", auth, uploadS3.none(), async (req, res, next) => {
         },
       });
     }
+    //res.json(newPost);
     return res.redirect(`/api/post/${newPost._id}`);
     //res.json(newPost);
   } catch (e) {
@@ -116,12 +117,29 @@ router.post("/", auth, uploadS3.none(), async (req, res, next) => {
 // @desc Detail Post
 // @access Public
 
-router.get("/:id", async (req, res, next) => {
+/*router.get("/:id", async (req, res, next) => {
   try {
     console.log("public");
-    const post = await Post.findById(req.params.id)
-      .populate("creator", "name")
-      .populate({ path: "category", select: "categoryName" });
+    const post = await Post.findById(req.params.id).populate(
+      "creator",
+      "name"
+    );
+    // .populate({ path: "category", select: "categoryName" });
+  } catch (e) {
+    console.error(e);
+    next(e);
+  }
+});
+*/
+
+router.get("/:id", async (req, res, next) => {
+  try {
+    const post = await Post.findById(req.params.id).populate("creator", "name");
+    //.populate({ path: "category", select: "categoryName" });
+    post.views += 1;
+    post.save();
+    console.log(post);
+    res.json(post);
   } catch (e) {
     console.error(e);
     next(e);
